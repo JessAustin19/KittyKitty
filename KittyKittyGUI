@@ -1,0 +1,60 @@
+"""
+Work in progress
+Working code as of 10/02/2021
+"""
+
+# This Python file uses the following encoding: utf-8
+import os
+from pathlib import Path
+import sys
+
+from PySide6 import QtCore
+from PySide6.QtWidgets import (
+    QApplication,
+    QMainWindow,
+    QWidget,
+    QVBoxLayout,
+    QHBoxLayout,
+    QPushButton,
+    QLabel,
+)
+from PySide6.QtGui import QPixmap, QPicture
+
+# Where we display the background image.
+stylesheet = """
+    QMainWindow {
+        background-image: url("C:/Users/Stars/Pictures/References/aldebaran-s-uXchDIKs4qI-unsplash.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+"""
+
+class KittyKitty(QMainWindow):
+    def __init__(self):
+        super(KittyKitty, self).__init__()
+        self.setWindowTitle("Kitty Kitty")
+        self.setFixedSize(600, 600)  # width, height
+        self.centralwidget = QWidget()
+        self.setCentralWidget(self.centralwidget)
+        layout = QVBoxLayout()
+        bottomlayout = QHBoxLayout(self.centralwidget)
+        bottomlayout.addWidget(QPushButton("Save pic"), alignment=QtCore.Qt.AlignBottom)
+        bottomlayout.addWidget(QPushButton("Show me a Kitty!"), alignment=QtCore.Qt.AlignBottom)
+        bottomlayout.addWidget(QPushButton("Open in browser"), alignment=QtCore.Qt.AlignBottom)
+
+        layout.addLayout(bottomlayout)
+        self.setLayout(layout)
+
+'''
+        label = QLabel(self)
+        picture = QPixmap('omgloon.jpg')
+        label.setPixmap(picture)
+        '''
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    app.setStyleSheet(stylesheet)
+    window = KittyKitty()
+    window.show()
+    sys.exit(app.exec())
